@@ -736,10 +736,11 @@ MonoBehaviour:
   - {fileID: 5803466541646554395, guid: 19bea6e91b032d445822ddefc19d9af2, type: 3}
   - {fileID: 4217903172841332306, guid: ab921e8d80dc27441b70181016dea49d, type: 3}
   - {fileID: 9019860389418206866, guid: 0c6d2ca8a43b1494bbea133cedf6b5c8, type: 3}
-  DistanceStepForGeneratingMapBlocks: 20
+  DistanceStepForGeneratingMapBlocks: 25
   MapBlockGenerationDistanceInAdvance: 20
-  MapSize: 500
-  ScrambaRangeOfMapBlock: {x: 1, y: 1}
+  MapSize: 1000
+  MapDensityScale: 1.5
+  ScrambaRangeOfMapBlock: 10
 --- !u!1 &1114706756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1208144871472054, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
@@ -902,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3601485586640201458, guid: 74482c1021def944489699f73fe41196, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -241.7
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 3601485586640201458, guid: 74482c1021def944489699f73fe41196, type: 3}
       propertyPath: m_LocalPosition.y

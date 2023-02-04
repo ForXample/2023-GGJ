@@ -11,7 +11,7 @@ public class MapGeneration : MonoBehaviour
     // The array used to store prefab 
     public GameObject[] PrefabList;
     // For every x unit to generate the next map blocks, which result in the density of blocks 
-    [Range(2, 25)]
+    [Range(2, 50)]
     public float DistanceStepForGeneratingMapBlocks = 3;
     // For every x unit to generate the next map blocks, which result in the density of blocks 
     [Range(20, 50)]
@@ -19,7 +19,11 @@ public class MapGeneration : MonoBehaviour
     // How many Map Block it will try to generate each time 
     [Range(500, 2000)]
     public int MapSize;
-    public Vector2 ScrambaRangeOfMapBlock;
+    // How many Map Block it will try to generate each time 
+    [Range(1, 2)]
+    public float MapDensityScale;
+    [Range(1, 10)]
+    public float ScrambaRangeOfMapBlock;
 
     // --------- Private Properties
     private Transform PlayerCurrentTransform;
@@ -118,13 +122,13 @@ public class MapGeneration : MonoBehaviour
                 switch (i)
                 {
                     case 0:         // Right
-                        currentGenPos += Vector2.right * MaxPrefabBoundsInList.magnitude;
+                        currentGenPos += Vector2.right * MaxPrefabBoundsInList.magnitude * MapDensityScale * Random.Range(-ScrambaRangeOfMapBlock, ScrambaRangeOfMapBlock);
                         break;
                     case 1:         // Up
-                        currentGenPos += Vector2.up * MaxPrefabBoundsInList.magnitude;
+                        currentGenPos += Vector2.up * MaxPrefabBoundsInList.magnitude * MapDensityScale * Random.Range(-ScrambaRangeOfMapBlock, ScrambaRangeOfMapBlock);
                         break;
                     case 2:         // left
-                        currentGenPos += Vector2.left * MaxPrefabBoundsInList.magnitude;
+                        currentGenPos += Vector2.left * MaxPrefabBoundsInList.magnitude * Random.Range(-ScrambaRangeOfMapBlock, ScrambaRangeOfMapBlock); 
                         break;
                     case 3:         // Current Location
                         break;
