@@ -17,8 +17,8 @@ public class MapGeneration : MonoBehaviour
     [Range(20, 50)]
     public float MapBlockGenerationDistanceInAdvance = 20;
     // How many Map Block it will try to generate each time 
-    [Range(1, 50)]
-    public int MapBlockDensity = 10;
+    [Range(500, 2000)]
+    public int MapSize;
     public Vector2 ScrambaRangeOfMapBlock;
 
     // --------- Private Properties
@@ -59,38 +59,45 @@ public class MapGeneration : MonoBehaviour
         {
             Debug.LogError("Cannot Generate Map since no Player Object Reference");
         }
+
+        for (float i = CurrentPlayerWorldPos.x; i < MapSize; i += DistanceStepForGeneratingMapBlocks)
+        {
+            GenerateMapBlocksOnPosition(CurrentMapGenerationLocation(i));
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerCurrentTransform = PlayerObjectReference.transform;
-        CurrentPlayerWorldPos = new Vector2(PlayerCurrentTransform.position.x,
-                                            PlayerCurrentTransform.position.y);
+        //PlayerCurrentTransform = PlayerObjectReference.transform;
+        //CurrentPlayerWorldPos = new Vector2(PlayerCurrentTransform.position.x,
+        //                                    PlayerCurrentTransform.position.y);
 
-        //Map blocks will only be generated when the step limit is exceeded
-        if (PlayerCurrentTransform.position.x - PlayerLatestXPosition > DistanceStepForGeneratingMapBlocks)
-        {
-            PlayerLatestXPosition = PlayerCurrentTransform.position.x;
-            Vector2 domainPos = CurrentMapGenerationLocation();
+        ////Map blocks will only be generated when the step limit is exceeded
+        //if (PlayerCurrentTransform.position.x - PlayerLatestXPosition > DistanceStepForGeneratingMapBlocks)
+        //{
+        //    PlayerLatestXPosition = PlayerCurrentTransform.position.x;
+        //    Vector2 domainPos = CurrentMapGenerationLocation();
 
-            float randomBaseX = Mathf.Abs(ScrambaRangeOfMapBlock.x);
-            float randomBaseY = Mathf.Abs(ScrambaRangeOfMapBlock.y);
-            GenerateMapBlocksOnPosition(new Vector2( domainPos.x + Random.Range(-randomBaseX, randomBaseX),
-                                                     domainPos.y + Random.Range(-randomBaseY, randomBaseY)));
-        }
+        //    float randomBaseX = Mathf.Abs(ScrambaRangeOfMapBlock.x);
+        //    float randomBaseY = Mathf.Abs(ScrambaRangeOfMapBlock.y);
+        //    GenerateMapBlocksOnPosition(new Vector2( domainPos.x + Random.Range(-randomBaseX, randomBaseX),
+        //                                             domainPos.y + Random.Range(-randomBaseY, randomBaseY)));
+        //}
     }
 
     //Based on Univariate Quadratic Equation to find the generate map block location 
-    Vector2 CurrentMapGenerationLocation()
+    Vector2 CurrentMapGenerationLocation(float inX)
     {
         Vector2 returnLocation = Vector2.zero;
 
         if(PlayerCurrentTransform != null)
         {
-            float xValue = PlayerCurrentTransform.position.x + MapBlockGenerationDistanceInAdvance;
+            float xValue = inX + MapBlockGenerationDistanceInAdvance;
 
-            float yValue = Mathf.Pow(1.3f, xValue);
+            float yValue = 0.7f * inX;         //Equation for map generation line
 
             returnLocation = new Vector2(xValue, yValue);
         }
@@ -102,10 +109,35 @@ public class MapGeneration : MonoBehaviour
     {
         if (PrefabList.Length != 0)
         {
-            int currentPrefabIdx = Random.Range(0, PrefabList.Length);
-            GameObject currentGenMapBlock = PrefabList[currentPrefabIdx];
+            int MapDensity = 4;
+            for(int i = 0; i < MapDensity; i++)
+            {
+                //hard code 
+                Vector2 currentGenPos = GenPos;
 
-            Instantiate(currentGenMapBlock, GenPos, Quaternion.identity);
+                switch (i)
+                {
+                    case 0:         // Right
+                        currentGenPos += Vector2.right * MaxPrefabBoundsInList.magnitude;
+                        break;
+                    case 1:         // Up
+                        currentGenPos += Vector2.up * MaxPrefabBoundsInList.magnitude;
+                        break;
+                    case 2:         // left
+                        currentGenPos += Vector2.left * MaxPrefabBoundsInList.magnitude;
+                        break;
+                    case 3:         // Current Location
+                        break;
+                    default:
+                        break;
+                }
+
+                int currentPrefabIdx = Random.Range(0, PrefabList.Length);
+                GameObject currentGenMapBlock = PrefabList[currentPrefabIdx];
+
+                Instantiate(currentGenMapBlock, currentGenPos, Quaternion.identity);
+            }
+
         }
     }
 
