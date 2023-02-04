@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class CurvePlaneMesh : MonoBehaviour
 {
-    public int xSize, ySize;
+    public float xSize, ySize;
     public float threshold;
+    public int resolution = 64;
     private Vector3[] vertices;
 
     private void Awake()
@@ -25,7 +26,7 @@ public class CurvePlaneMesh : MonoBehaviour
     {
         float planeWidth = xSize;
         float planeHeight = ySize;
-        int planesSeg = 64;
+        int planesSeg = resolution;
 
         Mesh mesh = new Mesh();
 
