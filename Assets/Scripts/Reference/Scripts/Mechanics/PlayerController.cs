@@ -58,6 +58,8 @@ namespace Platformer.Mechanics
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
+                if (jumpState == JumpState.InFlight && Input.GetButtonDown("Jump"))
+                    jumpState = JumpState.PrepareToJump;
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
@@ -104,11 +106,20 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
-            if (jump && IsGrounded)
+
+            if (jump)
             {
-                velocity.y = jumpTakeOffSpeed * model.jumpModifier;
-                jump = false;
+                if (IsGrounded)
+                {
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                }
+                else if (jumpState == JumpState.InFlight)
+                {
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                    jump = false;
+                }
             }
+
             else if (stopJump)
             {
                 stopJump = false;
@@ -117,6 +128,17 @@ namespace Platformer.Mechanics
                     velocity.y = velocity.y * model.jumpDeceleration;
                 }
             }
+
+
+            /*
+            if (jump && IsGrounded)
+            {
+                velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                jump = false;
+            }
+            */
+
+
 
             if (move.x > 0.01f)
                 spriteRenderer.flipX = false;
