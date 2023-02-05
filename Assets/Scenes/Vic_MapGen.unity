@@ -347,7 +347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224806073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5199938, y: -0.28000355, z: -9}
+  m_LocalPosition: {x: 2.382494, y: -0.28000355, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,6 +743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObjectReference: {fileID: 1114706756}
+  MapBackgroundReference: {fileID: 0}
+  WinZoneObjReference: {fileID: 0}
   PrefabList:
   - {fileID: 2097592563454353464, guid: a30647f2a59778d4cbc69594214b8bcb, type: 3}
   - {fileID: 2097592563454353464, guid: 78f856e1b038c9d479fc8d830ff8bbc2, type: 3}
@@ -754,11 +756,13 @@ MonoBehaviour:
   - {fileID: 2097592563454353464, guid: 497075b7ba171a14eba9de1a66cbc6d6, type: 3}
   - {fileID: 2097592563454353464, guid: b7c3368d25aebb649ad699fc8547c90a, type: 3}
   - {fileID: 2097592563454353464, guid: af6e1c7703845ec4b9c57d9831db590f, type: 3}
-  DistanceStepForGeneratingMapBlocks: 19.9
+  DistanceStepForGeneratingMapBlocks: 25
   MapBlockGenerationDistanceInAdvance: 20
   MapSize: 1000
+  MapAscendingSlope: 0
   MapDensityScale: 1.257
   ScrambaRangeOfMapBlock: 1.82
+  DeadZoneUpdateFrequency: 0
 --- !u!1 &1114706756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1208144871472054, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
@@ -1030,7 +1034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954142900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5199938, y: -0.28000355, z: -9}
+  m_LocalPosition: {x: 2.382494, y: -0.28000355, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
