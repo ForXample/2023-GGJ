@@ -296,11 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5163651
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1833906
+      value: -3.69
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -402,6 +402,18 @@ PrefabInstance:
     - target: {fileID: 4520396350849616, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230831923080080, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230831923080080, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
+      propertyPath: gravityModifier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230831923080080, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
+      propertyPath: jumpTakeOffSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 212064061491315838, guid: 2ab05fd50deb5fa488438a65f7d6d0d5, type: 3}
       propertyPath: m_Color.a
@@ -592,7 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224806073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.16, y: 7.12, z: -9}
+  m_LocalPosition: {x: 2.1599998, y: 0.119999886, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -898,7 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 10, y: 10, z: 0}
+  m_TrackedObjectOffset: {x: 8, y: 3, z: 0}
   m_LookaheadTime: 0.042
   m_LookaheadSmoothing: 0.73
   m_LookaheadIgnoreY: 0
@@ -1410,11 +1422,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.9570885
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9195724
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 13193c280aa519946bd5dab5ab055bf2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1467,11 +1479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 1457acf8565e4c74b8e97b737516b4d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.218816
+      value: -4.25
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 1457acf8565e4c74b8e97b737516b4d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.163135
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1632546328559163419, guid: 1457acf8565e4c74b8e97b737516b4d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1563,14 +1575,31 @@ MonoBehaviour:
   MapBackgroundReference: {fileID: 4565851397329566087, guid: 4d1b434a4de29ed43a2a3a966ad76033, type: 3}
   WinZoneObjReference: {fileID: 5090610857930958422, guid: a18163986705aa649827685ce24968dc, type: 3}
   PrefabList:
-  - {fileID: 5803466541646554395, guid: 19bea6e91b032d445822ddefc19d9af2, type: 3}
-  - {fileID: 4217903172841332306, guid: ab921e8d80dc27441b70181016dea49d, type: 3}
-  - {fileID: 9019860389418206866, guid: 0c6d2ca8a43b1494bbea133cedf6b5c8, type: 3}
-  DistanceStepForGeneratingMapBlocks: 10
+  - {fileID: 2097592563454353464, guid: a30647f2a59778d4cbc69594214b8bcb, type: 3}
+  - {fileID: 2097592563454353464, guid: 78f856e1b038c9d479fc8d830ff8bbc2, type: 3}
+  - {fileID: 2097592563454353464, guid: fe5a526921ea7614e821b9bbaa407601, type: 3}
+  - {fileID: 2097592563454353464, guid: 8eeb5bd62d37ac84db00ee490ee516b9, type: 3}
+  - {fileID: 2097592563454353464, guid: f93d209d00dc9054c9f97342821dc0ca, type: 3}
+  - {fileID: 2097592563454353464, guid: 4cc6d35a98d70e94092b47db1a74d0dc, type: 3}
+  - {fileID: 2097592563454353464, guid: f01138a2fb3a2294d970cba3357602c3, type: 3}
+  - {fileID: 2097592563454353464, guid: 497075b7ba171a14eba9de1a66cbc6d6, type: 3}
+  - {fileID: 2097592563454353464, guid: b7c3368d25aebb649ad699fc8547c90a, type: 3}
+  - {fileID: 2097592563454353464, guid: af6e1c7703845ec4b9c57d9831db590f, type: 3}
+  - {fileID: 2097592563454353464, guid: de799fd4b6a4ddd41b691588f6d53bc9, type: 3}
+  - {fileID: 2097592563454353464, guid: 9b5e79f38610b4a47b946f13a330d747, type: 3}
+  - {fileID: 2097592563454353464, guid: 29f0640e941bb2544b6d0e40e56994a4, type: 3}
+  - {fileID: 2097592563454353464, guid: 37da668a12e6e45478cf3f6240046e21, type: 3}
+  - {fileID: 2097592563454353464, guid: 6ab2f88f10251864a90b6cad50ed995f, type: 3}
+  - {fileID: 2097592563454353464, guid: 64ffa49d557edcf4b9d3f7ffd33604ce, type: 3}
+  - {fileID: 2097592563454353464, guid: 2df83eedaf5ea6e4186897a329097035, type: 3}
+  - {fileID: 2097592563454353464, guid: af2ede580e0609649a60fd3de5532b55, type: 3}
+  - {fileID: 2097592563454353464, guid: 7486d0ba6dff1024781687fb6564b514, type: 3}
+  - {fileID: 2097592563454353464, guid: ee661eb6a258e3d4395e29a14dce9832, type: 3}
+  DistanceStepForGeneratingMapBlocks: 13.9
   MapBlockGenerationDistanceInAdvance: 20
   MapSize: 300
   MapAscendingSlope: 1
-  MapDensityScale: 1.5
+  MapDensityScale: 1.273
   ScrambaRangeOfMapBlock: 4
   DeadZoneUpdateFrequency: 1
 --- !u!114 &987710493
@@ -2663,7 +2692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954142900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.16, y: 7.12, z: -9}
+  m_LocalPosition: {x: 2.1599998, y: 0.119999886, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
