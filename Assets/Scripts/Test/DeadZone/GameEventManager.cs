@@ -9,6 +9,8 @@ public class GameEventManager : MonoBehaviour
     public bool IsGameWin = false;
     public bool IsGameLose = false;
 
+    public delegate void GameOver(bool isFailed);
+    public static event GameOver OnGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,8 @@ public class GameEventManager : MonoBehaviour
     {
         if(IsGameEnd)
         {
+            OnGameOver(IsGameWin);
+
             if(IsGameWin)
             {
                 // UI process for Win
