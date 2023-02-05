@@ -42,6 +42,9 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+        private bool canJump;
+        private bool doubleJump;
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -58,8 +61,32 @@ namespace Platformer.Mechanics
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
-                if (jumpState == JumpState.InFlight && Input.GetButtonDown("Jump"))
-                    jumpState = JumpState.PrepareToJump;
+
+
+                else if (jumpState == JumpState.InFlight && Input.GetButtonDown("Jump"))
+                {
+
+
+                    if (canJump)
+                    {
+                        
+                        doubleJump = true;
+                        stopJump = true;
+                        jumpState = JumpState.PrepareToJump;
+
+                    }
+
+                    else if (doubleJump)
+                    {
+                        doubleJump = false;
+                        stopJump = true;
+                        Schedule<PlayerStopJump>().player = this;
+                        canJump = false;
+                        jump = true;
+                    }
+                }
+                //if (jumpState == JumpState.InFlight && Input.GetButtonDown("Jump"))
+
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
@@ -90,6 +117,13 @@ namespace Platformer.Mechanics
                         Schedule<PlayerJumped>().player = this;
                         jumpState = JumpState.InFlight;
                     }
+                    else if (!IsGrounded && doubleJump)
+                    {
+                        Schedule<PlayerJumped>().player = this;
+                        jumpState = JumpState.Jumping;
+                        //canJump = false;
+                    }
+
                     break;
                 case JumpState.InFlight:
                     if (IsGrounded)
@@ -97,9 +131,17 @@ namespace Platformer.Mechanics
                         Schedule<PlayerLanded>().player = this;
                         jumpState = JumpState.Landed;
                     }
+                   /* else if (doubleJump)
+                    {
+                        Schedule<PlayerJumped>().player = this;
+                        jumpState = JumpState.Jumping;
+                        //canJump = false;
+                    }*/
                     break;
                 case JumpState.Landed:
                     jumpState = JumpState.Grounded;
+                    canJump = true;
+                    doubleJump = false;
                     break;
             }
         }
@@ -113,11 +155,36 @@ namespace Platformer.Mechanics
                 {
                     velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                 }
-                else if (jumpState == JumpState.InFlight)
+               /* else if (jumpState == JumpState.InFlight && canJump)
                 {
                     velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                     jump = false;
+                    canJump = false;
+                    doubleJump = true;
                 }
+                else if (jumpState == JumpState.InFlight && !canJump)
+                {
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                    jump = false;
+                    canJump = true;
+                    doubleJump = false;
+                }*/
+                else if (jumpState == JumpState.Jumping && canJump)
+                {
+                    canJump = false;
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                    jump = false;
+                    doubleJump = true;
+                }
+                else if (jumpState == JumpState.Jumping && !canJump)
+                {
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                    jump = false;
+                    canJump = true;
+                    doubleJump = false;
+                }
+
+
             }
 
             else if (stopJump)
