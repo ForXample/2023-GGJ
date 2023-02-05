@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
    public void PlayButton()
     {
-        SceneManager.LoadScene("tempScene");
+        SceneManager.LoadScene("DeadZoneTest");
     }
 
     public void QuitButton()
