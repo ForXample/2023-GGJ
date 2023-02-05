@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public class RotationAline : MonoBehaviour
+public class HightAndRotationAlign : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -11,8 +11,12 @@ public class RotationAline : MonoBehaviour
     public GameObject PlayerRef;
     [Range(0, 360)]
     public float RotateDegreePerUnit;
+    [Range(0.1f, 100)]
+    public float AccendSpeed;
     [Range(0, 500)]
     public float AccendMaxHight;
+    [Range(-50, 500)]
+    public float AccendMinHight;
 
     Transform CurrentPlayerTransform;
     Vector2 CurrentPlayer2DWorldPos;
@@ -21,6 +25,7 @@ public class RotationAline : MonoBehaviour
     Vector2 DeltaPlayer2DWorldDiff;
     Vector2 Player2DWorldInitPos;
     Vector3 RotationCenterPoint;
+    Vector3 ObjectInitalPos;
 
 
     void Start()
@@ -28,22 +33,28 @@ public class RotationAline : MonoBehaviour
         RotationCenterPoint = transform.position;
         GetPlayerUpdate();
         Player2DWorldInitPos = CurrentPlayer2DWorldPos;
-
+        ObjectInitalPos = RotateObjectRef.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetPlayerUpdate();
+        GetPlayerUpdate();  
         RotationCenterPoint = transform.position;
 
-        if (CurrentPlayer2DWorldDiff.sqrMagnitude > 1)
-        {
-            LastPlayer2DWorldUpdatePos = CurrentPlayer2DWorldPos;
-            //Vector3 newHightPos = this.GetComponent<Transform>().position + new Vector3(0, , 0);
-            float RotateAngle = DeltaPlayer2DWorldDiff.x * RotateDegreePerUnit;
-            RotateObjectRef.GetComponent<Transform>().RotateAround(RotationCenterPoint, Vector3.up, RotateAngle * Time.deltaTime);
-        }
+        //if (CurrentPlayer2DWorldDiff.sqrMagnitude > 1)
+        //{
+        LastPlayer2DWorldUpdatePos = CurrentPlayer2DWorldPos;
+            
+        //Rotation
+        float RotateAngle = DeltaPlayer2DWorldDiff.x * RotateDegreePerUnit;
+        RotateObjectRef.GetComponent<Transform>().RotateAround(RotationCenterPoint, Vector3.up, RotateAngle * Time.deltaTime);
+
+        //climb
+        float newHeight = CurrentPlayer2DWorldDiff.y;
+        if(newHeight > AccendMinHight && newHeight < AccendMaxHight)
+            RotateObjectRef.transform.position = ObjectInitalPos + new Vector3(0, newHeight * AccendSpeed, 0);
+        //}
     }
 
     void GetPlayerUpdate()

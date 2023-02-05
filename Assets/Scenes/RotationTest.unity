@@ -1608,15 +1608,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313253725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b86a8d81db0e27e479e92423e415f3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RotateObjectRef: {fileID: 1398541711}
   PlayerRef: {fileID: 1114706756}
-  RotateDegreePerUnit: 30
+  RotateDegreePerUnit: 40
+  AccendSpeed: 0.7
   AccendMaxHight: 500
+  AccendMinHight: -50
 --- !u!1 &1315161275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398541711}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1200, y: 950, z: -300}
+  m_LocalPosition: {x: -1200, y: 930, z: -300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2645,7 +2647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3601485585651866781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2769,18 +2771,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3601485586662368355}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a7fbb84e37cc8f4bacc115ac6f6e6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 71a8917ce5409d341a57d0e18443e1de, type: 3}
   downSample: 1
-  samplerScale: 1
+  samplerScale: 0
   count: 1
-  edgeWidth: 3
-  sensitive: 0.35
-  paintFactor: 2
+  edgeWidth: 6.1
+  sensitive: 0.283
+  paintFactor: 0
   noiseTexture: {fileID: 2800000, guid: 7f37252138b62ec40b6554a181392074, type: 3}
 --- !u!20 &3601485586662368381
 Camera:
@@ -2856,7 +2858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &3601485586738820580
 MeshFilter:
   m_ObjectHideFlags: 0
