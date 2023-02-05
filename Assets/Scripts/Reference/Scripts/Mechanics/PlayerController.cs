@@ -42,6 +42,10 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+        private bool isAbleDoublejump;
+        private bool doubleJump;
+        //private bool isJumpedFirst;
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -57,14 +61,58 @@ namespace Platformer.Mechanics
             {
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+<<<<<<< Updated upstream
                     jumpState = JumpState.PrepareToJump;
                 if (jumpState == JumpState.InFlight && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
+=======
+                { jumpState = JumpState.PrepareToJump;
+     
+                    isAbleDoublejump = true;
+                    doubleJump = false;
+                    
+                }
+
+                if (isAbleDoublejump) {
+                /*if (Input.GetButtonDown("Jump") && jumpState == JumpState.Jumping)
+                    {
+                        doubleJump = true;
+                        stopJump = false;
+                        jumpState = JumpState.Jumping;
+                        isAbleDoublejump = false;
+
+
+
+                        //Schedule<PlayerStopJump>().player = this;
+
+                    }*/
+
+                    if (Input.GetButtonDown("Jump") && jumpState == JumpState.InFlight)
+                    {
+                        doubleJump = true;
+                        isAbleDoublejump = false;
+                        stopJump = false;
+                        jumpState = JumpState.Jumping;
+                        //Schedule<PlayerStopJump>().player = this;
+
+                    }
+                    /*else if (Input.GetButtonUp("Jump"))
+                    {
+                        stopJump = true;
+                        Schedule<PlayerStopJump>().player = this;
+
+                    }*/
+                }
+
+
+>>>>>>> Stashed changes
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
+
                 }
+                
             }
             else
             {
@@ -85,21 +133,54 @@ namespace Platformer.Mechanics
                     stopJump = false;
                     break;
                 case JumpState.Jumping:
+
+                    /*if (isAbleDoublejump)
+                    {
+                        if (!IsGrounded && doubleJump)
+                        {
+                            doubleJump = true;
+                            Schedule<PlayerJumped>().player = this;
+                            jumpState = JumpState.Jumping;
+                            //doubleJump = !doubleJump;
+                            isAbleDoublejump = false;
+                            print(isAbleDoublejump);
+
+                        }
+                    }*/
                     if (!IsGrounded)
                     {
                         Schedule<PlayerJumped>().player = this;
                         jumpState = JumpState.InFlight;
                     }
+
                     break;
                 case JumpState.InFlight:
-                    if (IsGrounded)
+
+                    if (isAbleDoublejump)
+                    {
+                        if (!IsGrounded && doubleJump)
+                        {
+                            doubleJump = true;
+                            Schedule<PlayerJumped>().player = this;
+                            jumpState = JumpState.Jumping;
+                            //doubleJump = !doubleJump;
+                            isAbleDoublejump = false;
+                            print(isAbleDoublejump);
+                        }
+                    }
+                    else if (IsGrounded)
                     {
                         Schedule<PlayerLanded>().player = this;
                         jumpState = JumpState.Landed;
+                        isAbleDoublejump = true;
+                        doubleJump = false;
+
                     }
                     break;
                 case JumpState.Landed:
                     jumpState = JumpState.Grounded;
+                    isAbleDoublejump = true;
+                    doubleJump = false;
                     break;
             }
         }
@@ -109,6 +190,7 @@ namespace Platformer.Mechanics
 
             if (jump)
             {
+<<<<<<< Updated upstream
                 if (IsGrounded)
                 {
                     velocity.y = jumpTakeOffSpeed * model.jumpModifier;
@@ -120,6 +202,25 @@ namespace Platformer.Mechanics
                 }
             }
 
+=======
+                velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                jump = false;
+                isAbleDoublejump = true;
+            }
+
+           if (isAbleDoublejump)
+            {
+                if (doubleJump && !IsGrounded)
+                {
+                    doubleJump = true;
+                    velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                    jump = false;
+                    isAbleDoublejump = false;
+                }
+            }
+
+
+>>>>>>> Stashed changes
             else if (stopJump)
             {
                 stopJump = false;
