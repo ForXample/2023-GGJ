@@ -12,6 +12,6 @@ public class GameOverLose : MonoBehaviour
 
     public void QuitButton()
     {
-        SceneManager.LoadScene("Win Screen 1");
+        SceneManager.LoadScene("Start");
     }
 }

@@ -521,7 +521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ROOTS
+  m_text: Yaoshi
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08460de1ef604214e968b25c14fd525b, type: 2}
   m_sharedMaterial: {fileID: 3170493439968808391, guid: 08460de1ef604214e968b25c14fd525b, type: 2}
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95358f3a2f1546147bdc296905f493df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69864a5018cf2484983a55d23e9eb7cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

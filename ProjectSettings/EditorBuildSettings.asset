@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Win Screen 1.unity
+    path: Assets/Scenes/Start.unity
     guid: cd02f4ae326396f4da2a95105b0eb079
   - enabled: 1
     path: Assets/Scenes/Victor.unity
