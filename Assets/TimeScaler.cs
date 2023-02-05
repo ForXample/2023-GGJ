@@ -13,7 +13,7 @@ public class TimeScaler : MonoBehaviour
     void Awake()
     {
         this.fixedDeltaTime = Time.fixedDeltaTime;
-        GameEventManager.OnGameOver += Handle_OnGameOver;
+        //GameEventManager.OnGameOver += Handle_OnGameOver;
     }
 
     void Handle_OnGameOver(bool isGameWin)
@@ -23,7 +23,7 @@ public class TimeScaler : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEventManager.OnGameOver -= Handle_OnGameOver;
+        //GameEventManager.OnGameOver -= Handle_OnGameOver;
     }
 
     IEnumerator FadeTimeScale(bool isGameWin)

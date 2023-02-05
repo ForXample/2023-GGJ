@@ -25,7 +25,7 @@ public class PlayerState : MonoBehaviour
 
         // events
 
-        GameEventManager.OnGameOver += Handle_OnPlayerDead;
+        //GameEventManager.OnGameOver += Handle_OnPlayerDead;
 
         // load saved data 
         LocalPlayerData = PlayerDataSavingHelper.LoadData();
@@ -44,7 +44,7 @@ public class PlayerState : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEventManager.OnGameOver -= Handle_OnPlayerDead;
+        //GameEventManager.OnGameOver -= Handle_OnPlayerDead;
     }
 
     void Handle_OnPlayerDead(bool isSuccess)

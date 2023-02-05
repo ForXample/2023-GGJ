@@ -11,10 +11,10 @@ public class GameEventManager : MonoBehaviour
     public bool IsGameLose = false;
     public bool IsGameOverAnimationFinished = false;
 
-    public delegate void GameOver(bool isFailed);
-    public static event GameOver OnGameOver;
+    //public delegate void GameOverDelegate(bool isFailed);
+    //public static event GameOverDelegate OnGameOver;
 
-    public static GameEventManager Instance { get; private set; }
+    public static GameEventManager Instance { get; private set;}
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -42,20 +42,20 @@ public class GameEventManager : MonoBehaviour
     {
         if(IsGameEnd)
         {
-            OnGameOver(IsGameWin);
+            //OnGameOver(IsGameWin);
 
-            if(IsGameOverAnimationFinished)
+            //if (IsGameOverAnimationFinished)
+            //{
+            if (IsGameWin)
             {
-                if (IsGameWin)
-                {
-                    SceneManager.LoadScene("Win Screen");
-                }
-
-                if (IsGameLose)
-                {
-                    SceneManager.LoadScene("Lose Screen");
-                }
+                SceneManager.LoadScene("Win Screen");
             }
+
+            if (IsGameLose)
+            {
+                SceneManager.LoadScene("Lose Screen");
+            }
+            //}
         }
     }
 
