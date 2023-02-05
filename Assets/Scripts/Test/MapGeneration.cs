@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using Random = UnityEngine.Random;
 
 public class MapGeneration : MonoBehaviour
