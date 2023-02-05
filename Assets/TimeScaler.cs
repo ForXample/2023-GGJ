@@ -18,7 +18,7 @@ public class TimeScaler : MonoBehaviour
 
     void Handle_OnGameOver(bool isGameWin)
     {
-        StartCoroutine(FadeTimeScale());
+        StartCoroutine(FadeTimeScale(isGameWin));
     }
 
     private void OnDestroy()
@@ -26,16 +26,20 @@ public class TimeScaler : MonoBehaviour
         GameEventManager.OnGameOver -= Handle_OnGameOver;
     }
 
-    IEnumerator FadeTimeScale()
+    IEnumerator FadeTimeScale(bool isGameWin)
     {
         if(Time.timeScale > 0)
         {
             Time.timeScale -= Time.deltaTime * timefadescaler;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            GameEventManager.Instance.IsGameOverAnimationFinished = false;
         }
-        else if(Time.timeScale <= 0)
+        
+        if(Time.timeScale <= 0.2)
         {
             Time.timeScale = 0;
+            GameEventManager.Instance.IsGameOverAnimationFinished = true;
+
         }
 
         yield return null;
