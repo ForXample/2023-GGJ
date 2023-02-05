@@ -7,9 +7,11 @@ using Random = UnityEngine.Random;
 
 public class MapGeneration : MonoBehaviour
 {
+
     // --------- Public Properties
     public GameObject PlayerObjectReference;
     public GameObject MapBackgroundReference;
+    public GameObject WinZoneObjReference;
     // The array used to store prefab 
     public GameObject[] PrefabList;
     // For every x unit to generate the next map blocks, which result in the density of blocks 
@@ -28,17 +30,23 @@ public class MapGeneration : MonoBehaviour
     public float MapDensityScale;
     [Range(1, 10)]
     public float ScrambaRangeOfMapBlock;
+    [Range(1, 10)]
+
+    [Header("Deadzone Follow")]
+    public float DeadZoneUpdateFrequency;
 
     // --------- Private Properties
     private Transform PlayerCurrentTransform;
     private Vector2 CurrentPlayerWorldPos;
-    private float PlayerLatestXPosition;
+    private Vector2 InitialPlayerWorldPos;
+    private Vector2 LastUpdatePlayerWorldPos;
+    private float InitialPlayerDeadZoneDiff;
     private Vector2 MaxPrefabBoundsInList;
 
 
     private void Awake()
     {
-        Application.targetFrameRate = -1;
+        Application.targetFrameRate = 60;
     }
 
     // --------- Functions
@@ -61,12 +69,11 @@ public class MapGeneration : MonoBehaviour
             Debug.LogError("Cannot Generate Map since no prefab");
         }
 
-        if(PlayerObjectReference != null)
+        if (PlayerObjectReference != null)
         {
-            PlayerCurrentTransform = PlayerObjectReference.transform;
-            PlayerLatestXPosition = PlayerCurrentTransform.position.x;
-            CurrentPlayerWorldPos = new Vector2(PlayerCurrentTransform.position.x,
-                                                PlayerCurrentTransform.position.y);
+            UpdatePlayerInfo();
+            InitialPlayerWorldPos = CurrentPlayerWorldPos;
+            InitialPlayerDeadZoneDiff = Vector2.Distance(InitialPlayerWorldPos, (Vector2) transform.position);
         }
         else
         {
@@ -78,6 +85,10 @@ public class MapGeneration : MonoBehaviour
         {
             GenerateMapBlocksOnPosition(CurrentMapGenerationLocation(i));
         }
+
+        //Generate WinZone in the end of the map
+        if(WinZoneObjReference != null)
+            Instantiate(WinZoneObjReference, CurrentMapGenerationLocation(MapSize), Quaternion.identity);
 
         //Generate Map Background
         if(MapBackgroundReference != null)
@@ -92,7 +103,24 @@ public class MapGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        UpdatePlayerInfo();
+
+        //Move the game object to update the dead zone
+        Vector2 DeltaPlayerWorldPos = CurrentPlayerWorldPos - LastUpdatePlayerWorldPos;
+        if(DeltaPlayerWorldPos.x > DeadZoneUpdateFrequency &&      //Can only move towards right && moving down
+           DeltaPlayerWorldPos.y > 0)
+        {
+            LastUpdatePlayerWorldPos = CurrentPlayerWorldPos;
+            Vector2 newDeadzoneLocation = CurrentPlayerWorldPos + new Vector2(-1, -1) * InitialPlayerDeadZoneDiff;
+            this.transform.position = newDeadzoneLocation;
+        }
+    }
+
+    void UpdatePlayerInfo()
+    {
+        PlayerCurrentTransform = PlayerObjectReference.transform;
+        CurrentPlayerWorldPos = new Vector2(PlayerCurrentTransform.position.x,
+                                            PlayerCurrentTransform.position.y);
     }
 
     Mesh GenerateBackgroundMesh()
@@ -168,6 +196,7 @@ public class MapGeneration : MonoBehaviour
 
                 int currentPrefabIdx = Random.Range(0, PrefabList.Length);
                 GameObject currentGenMapBlock = PrefabList[currentPrefabIdx];
+                currentGenMapBlock.isStatic = true;
 
                 Instantiate(currentGenMapBlock, currentGenPos, Quaternion.identity);
             }
