@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEventManager : MonoBehaviour
 {
@@ -25,12 +26,12 @@ public class GameEventManager : MonoBehaviour
         {
             if(IsGameWin)
             {
-                // UI process for Win
+                SceneManager.LoadScene("Win Screen");
             }
 
             if(IsGameLose)
             {
-                // UI process for lose
+                SceneManager.LoadScene("Lose Screen");
             }
         }
     }

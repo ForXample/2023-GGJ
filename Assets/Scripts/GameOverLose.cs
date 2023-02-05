@@ -7,7 +7,7 @@ public class GameOverLose : MonoBehaviour
 {
    public void RestartButton()
     {
-        SceneManager.LoadScene("tempScene");
+        SceneManager.LoadScene("DeadZoneTest");
     }
 
     public void QuitButton()
