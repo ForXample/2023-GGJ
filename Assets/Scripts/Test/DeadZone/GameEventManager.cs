@@ -9,9 +9,25 @@ public class GameEventManager : MonoBehaviour
     public bool IsGameEnd = false;
     public bool IsGameWin = false;
     public bool IsGameLose = false;
+    public bool IsGameOverAnimationFinished = false;
 
-    public delegate void GameOver(bool isFailed);
-    public static event GameOver OnGameOver;
+    //public delegate void GameOverDelegate(bool isFailed);
+    //public static event GameOverDelegate OnGameOver;
+
+    public static GameEventManager Instance { get; private set;}
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +42,20 @@ public class GameEventManager : MonoBehaviour
     {
         if(IsGameEnd)
         {
-            OnGameOver(IsGameWin);
+            //OnGameOver(IsGameWin);
 
-            if(IsGameWin)
+            //if (IsGameOverAnimationFinished)
+            //{
+            if (IsGameWin)
             {
                 SceneManager.LoadScene("Win Screen");
             }
 
-            if(IsGameLose)
+            if (IsGameLose)
             {
                 SceneManager.LoadScene("Lose Screen");
             }
+            //}
         }
     }
 

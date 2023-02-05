@@ -744,7 +744,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 107.1, y: -1.3808565}
+  m_Offset: {x: 17.287487, y: -1.3808565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -755,7 +755,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 276.53, y: 6.8}
+  m_Size: {x: 74.42115, y: 3.761713}
   m_EdgeRadius: 0
 --- !u!1 &385614858
 GameObject:
@@ -1524,7 +1524,6 @@ GameObject:
   - component: {fileID: 987710492}
   - component: {fileID: 987710493}
   - component: {fileID: 987710494}
-  - component: {fileID: 987710495}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1590,7 +1589,6 @@ MonoBehaviour:
   IsGameEnd: 0
   IsGameWin: 0
   IsGameLose: 0
-  IsGameOverAnimationFinished: 0
 --- !u!114 &987710494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,21 +1601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3eaecfcdf76f8428a6050bd9aa52e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrigger: 0
   timefadescaler: 0.8
---- !u!114 &987710495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987710490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 437b86c7e7f30f042ad3a62709477dd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalPlayerData:
-    HowManyTimesDidThePlayerDie: 0
 --- !u!1 &1012582470
 GameObject:
   m_ObjectHideFlags: 0
